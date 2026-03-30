@@ -1,0 +1,145 @@
+{
+  "common": {
+    "success": "تم بنجاح",
+    "error": "خطأ",
+    "notFound": "غير موجود",
+    "invalidRequest": "طلب غير صحيح",
+    "serverError": "خطأ في الخادم",
+    "unauthorized": "غير مصرح",
+    "forbidden": "محظور",
+    "validationError": "خطأ في التحقق",
+    "created": "تم إنشاؤه بنجاح",
+    "updated": "تم تحديثه بنجاح",
+    "deleted": "تم حذفه بنجاح",
+    "saved": "تم حفظه بنجاح"
+  },
+  "payment": {
+    "linkGenerated": "تم إنشاء رابط الدفع بنجاح",
+    "linkGenerationFailed": "فشل في إنشاء رابط الدفع",
+    "channelsRetrieved": "تم استلام وسائل الدفع بنجاح",
+    "channelsRetrievalFailed": "فشل في استلام وسائل الدفع",
+    "retrieved": "تم استرداد المدفوعات بنجاح",
+    "error": "حدث خطأ أثناء استرداد المدفوعات",
+    "status": {
+      "pending": "قيد الانتظار",
+      "completed": "مكتمل",
+      "failed": "فشل",
+      "cancelled": "ملغي"
+    },
+    "method": {
+      "creditCard": "بطاقة ائتمان",
+      "bankTransfer": "حوالة بنكية",
+      "cash": "نقداً",
+      "wallet": "المحفظة"
+    },
+    "channels": {
+      "creditCard": "بطاقة ائتمان",
+      "bankTransfer": "حوالة بنكية",
+      "cash": "نقداً",
+      "wallet": "المحفظة"
+    },
+    "orderCreated": "تم إنشاء طلب الدفع بنجاح",
+    "creationFailed": "فشل في إنشاء طلب الدفع",
+    "callbackFailed": "فشل في معالجة رد الدفع",
+    "verified": "تم التحقق من الدفع بنجاح",
+    "verificationFailed": "فشل في التحقق من الدفع",
+    "refundSuccess": "تم إرجاع المبلغ بنجاح",
+    "refundFailed": "فشل في إرجاع المبلغ",
+    "orderStatus": {
+      "pending": "قيد المعالجة",
+      "completed": "تم الدفع",
+      "failed": "فشل الدفع",
+      "cancelled": "تم إلغاء الدفع"
+    },
+    "paymentStatus": {
+      "success": "نجاح",
+      "pending": "قيد المعالجة",
+      "failed": "فشل",
+      "cancelled": "ملغي"
+    }
+  },
+  "user": {
+    "profileRetrieved": "تم استرجاع الملف الشخصي بنجاح",
+    "profileError": "فشل في استرجاع الملف الشخصي",
+    "profileUpdated": "تم تحديث الملف الشخصي بنجاح",
+    "profileUpdateError": "فشل في تحديث الملف الشخصي",
+    "userBookings": {
+      "retrieved": "تم استرداد الحجوزات بنجاح",
+      "retrieveError": "خطأ في استرداد الحجوزات",
+      "noBookings": "لا توجد حجوزات"
+    },
+    "contactInfo": {
+      "retrieved": "تم استرداد معلومات التواصل بنجاح",
+      "retrieveError": "خطأ في استرداد معلومات التواصل",
+      "updated": "تم تحديث معلومات التواصل بنجاح",
+      "updateError": "خطأ في تحديث معلومات التواصل",
+      "notFound": "معلومات التواصل غير موجودة",
+      "linkAdded": "تم إضافة رابط التواصل بنجاح",
+      "linkAddError": "خطأ في إضافة رابط التواصل",
+      "linkExists": "رابط التواصل موجود بالفعل",
+      "linkUpdated": "تم تحديث رابط التواصل بنجاح",
+      "linkUpdateError": "خطأ في تحديث رابط التواصل",
+      "linkNotFound": "رابط التواصل غير موجود",
+      "linkDeleted": "تم حذف رابط التواصل بنجاح",
+      "linkDeleteError": "خطأ في حذف رابط التواصل",
+      "statusToggled": "تم تغيير حالة معلومات التواصل بنجاح",
+      "statusToggleError": "خطأ في تغيير حالة معلومات التواصل"
+    },
+    "notFound": "المستخدم غير موجود"
+  },
+  "dashboard": {
+    "stats": {
+      "retrieved": "تم استرداد إحصائيات لوحة التحكم بنجاح",
+      "error": "خطأ في استرداد إحصائيات لوحة التحكم"
+    },
+    "bookingStats": {
+      "retrieved": "تم استرداد إحصائيات الحجوزات حسب نوع التجربة بنجاح",
+      "error": "خطأ في استرداد إحصائيات الحجوزات"
+    },
+    "activities": {
+      "retrieved": "تم استرداد الأنشطة الحديثة بنجاح",
+      "error": "خطأ في استرداد الأنشطة الحديثة"
+    },
+    "revenue": {
+      "retrieved": "تم استرداد تحليلات الإيرادات بنجاح",
+      "error": "خطأ في استرداد تحليلات الإيرادات"
+    }
+  },
+  "training": {
+    "created": "تم إنشاء البرنامج التدريبي بنجاح",
+    "updated": "تم تحديث البرنامج التدريبي بنجاح",
+    "deleted": "تم حذف البرنامج التدريبي بنجاح",
+    "notFound": "البرنامج التدريبي غير موجود",
+    "statusUpdated": "تم تحديث حالة البرنامج إلى: {{status}}",
+    "dateDisabled": "تم تعطيل التاريخ بنجاح",
+    "dateEnabled": "تم تفعيل التاريخ بنجاح",
+    "dateAlreadyDisabled": "التاريخ متعطل بالفعل",
+    "categories": {
+      "children": "الأطفال",
+      "youth": "الشباب",
+      "women": "النساء"
+    },
+    "days": {
+      "monday": "الإثنين",
+      "tuesday": "الثلاثاء",
+      "wednesday": "الأربعاء",
+      "thursday": "الخميس",
+      "friday": "الجمعة",
+      "saturday": "السبت",
+      "sunday": "الأحد"
+    },
+    "status": {
+      "active": "نشط",
+      "inactive": "غير نشط"
+    },
+    "course": {
+      "daily": "حصة يومية",
+      "group": "حصص جماعية",
+      "individual": "حصص فردية"
+    },
+    "time": {
+      "hour": "ساعة",
+      "hours": "ساعات"
+    }
+  }
+}

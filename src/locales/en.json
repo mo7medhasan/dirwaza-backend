@@ -1,0 +1,147 @@
+{
+  "common": {
+    "success": "Success",
+    "error": "Error",
+    "notFound": "Not Found",
+    "invalidRequest": "Invalid Request",
+    "serverError": "Server Error",
+    "unauthorized": "Unauthorized",
+    "forbidden": "Forbidden",
+    "validationError": "Validation Error",
+    "created": "Created Successfully",
+    "updated": "Updated Successfully",
+    "deleted": "Deleted Successfully",
+    "saved": "Saved Successfully"
+  },
+  "payment": {
+    "linkGenerated": "Link Generated Successfully",
+    "linkGenerationFailed": "Failed to Generate Link",
+    "channelsRetrieved": "Channels Retrieved Successfully",
+    "channelsRetrievalFailed": "Failed to Retrieve Channels",
+    "retrieved": "Payments retrieved successfully",
+    "error": "Error retrieving payments",
+    "status": {
+      "pending": "Pending",
+      "completed": "Completed",
+      "failed": "Failed",
+      "cancelled": "Cancelled"
+    },
+    "method": {
+      "creditCard": "Credit Card",
+      "bankTransfer": "Bank Transfer",
+      "cash": "Cash",
+      "wallet": "Wallet"
+    },
+    "channels": {
+      "creditCard": "Credit Card",
+      "bankTransfer": "Bank Transfer",
+      "cash": "Cash",
+      "wallet": "Wallet"
+    },
+    "orderCreated": "Order Created Successfully",
+    "creationFailed": "Failed to Create Order",
+    "callbackFailed": "Failed to Process Payment Response",
+    "verified": "Payment Verified Successfully",
+    "verificationFailed": "Failed to Verify Payment",
+    "refundSuccess": "Refund Successful",
+    "refundFailed": "Failed to Refund",
+    "orderStatus": {
+      "pending": "Pending",
+      "completed": "Completed",
+      "failed": "Failed",
+      "cancelled": "Cancelled"
+    },
+    "paymentStatus": {
+      "success": "Success",
+      "pending": "Pending",
+      "failed": "Failed",
+      "cancelled": "Cancelled"
+    }
+  },
+  "user": {
+    "profileRetrieved": "Profile retrieved successfully",
+    "profileError": "Error retrieving profile",
+    "profileUpdated": "Profile updated successfully",
+    "profileUpdateError": "Error updating profile",
+    "bookingsRetrieved": "Bookings retrieved successfully",
+    "bookingsError": "Error retrieving bookings",
+    "notFound": "User not found"
+  },
+  "dashboard": {
+    "stats": {
+      "retrieved": "Dashboard statistics retrieved successfully",
+      "error": "Error retrieving dashboard statistics"
+    },
+    "bookingStats": {
+      "retrieved": "Booking statistics by experience type retrieved successfully",
+      "error": "Error retrieving booking statistics"
+    },
+    "activities": {
+      "retrieved": "Recent activities retrieved successfully",
+      "error": "Error retrieving recent activities"
+    },
+    "revenue": {
+      "retrieved": "Revenue analytics retrieved successfully",
+      "error": "Error retrieving revenue analytics"
+    }
+  },
+  "userBookings": {
+    "retrieved": "Bookings retrieved successfully",
+    "retrieveError": "Error retrieving bookings",
+    "noBookings": "No bookings found"
+  },
+  "contactInfo": {
+      "retrieved": "Contact information retrieved successfully",
+      "retrieveError": "Error retrieving contact information",
+      "updated": "Contact information updated successfully",
+      "updateError": "Error updating contact information",
+      "notFound": "Contact information not found",
+      "linkAdded": "Contact link added successfully",
+      "linkAddError": "Error adding contact link",
+      "linkExists": "Contact link already exists",
+      "linkUpdated": "Contact link updated successfully",
+      "linkUpdateError": "Error updating contact link",
+      "linkNotFound": "Contact link not found",
+      "linkDeleted": "Contact link deleted successfully",
+      "linkDeleteError": "Error deleting contact link",
+      "statusToggled": "Contact info status toggled successfully",
+      "statusToggleError": "Error toggling contact info status"
+  },
+  "training": {
+    "created": "Training program created successfully",
+    "updated": "Training program updated successfully",
+    "deleted": "Training program deleted successfully",
+    "notFound": "Training program not found",
+    "statusUpdated": "Training status updated to: {{status}}",
+    "dateDisabled": "Date disabled successfully",
+    "dateEnabled": "Date enabled successfully",
+    "dateAlreadyDisabled": "Date is already disabled",
+    "categories": {
+      "children": "Children",
+      "youth": "Youth",
+      "women": "Women"
+    },
+    "days": {
+      "monday": "Monday",
+      "tuesday": "Tuesday",
+      "wednesday": "Wednesday",
+      "thursday": "Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "course": {
+      "daily": "Daily Session",
+      "group": "Group Sessions",
+      "individual": "Individual Sessions"
+    },
+    "time": {
+      "hour": "Hour",
+      "hours": "Hours"
+    }
+  }
+}

@@ -1,0 +1,300 @@
+{
+  "info": {
+    "_postman_id": "3c686c0c-7aec-44a0-b26f-349367028e82",
+    "name": "Dirwaza API - Updated",
+    "description": "Updated Dirwaza API collection with corrected booking endpoints and NoqoodyPay integration",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Training",
+      "item": [
+        {
+          "name": "Get All Trainings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/training",
+              "host": ["{{base_url}}"],
+              "path": ["api", "training"]
+            },
+            "description": "Get all available training categories and courses. Note: endpoint is /api/training (singular), not /api/trainings"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "Create Horse Training Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agreedToTerms\": true,\n  \"personalInfo\": {\n    \"fullName\": \"أحمد محمد العلي\",\n    \"parentName\": \"محمد العلي\",\n    \"age\": \"12\",\n    \"mobileNumber\": \"+966501111111\",\n    \"previousTraining\": \"لا يوجد\",\n    \"notes\": \"الطفل متحمس للتدريب\"\n  },\n  \"numberPersons\": 1,\n  \"selectedCategoryId\": \"6882548dde85af2101c4d617\",\n  \"selectedCourseId\": \"children-daily\",\n  \"selectedAppointments\": [\n    {\n      \"date\": \"2025-07-27\",\n      \"timeSlot\": \"18:00\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/bookings/horse",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", "horse"]
+            },
+            "description": "Create horse training booking with NoqoodyPay payment integration. Returns booking details with paymentUrl, paymentReference, and paymentMessage. Supports multiple payment methods including Apple Pay."
+          }
+        },
+        {
+          "name": "Create Plant Order Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"agreedToTerms\": true,\n  \"personalInfo\": {\n    \"fullName\": \"سارة أحمد محمد\",\n    \"mobileNumber\": \"+966501234567\",\n    \"notes\": \"أريد نباتات للحديقة المنزلية\"\n  },\n  \"recipientPerson\": {\n    \"fullName\": \"سارة أحمد محمد\",\n    \"mobileNumber\": \"+966501234567\"\n  },\n  \"deliveryAddress\": {\n    \"city\": \"الرياض\",\n    \"district\": \"النرجس\",\n    \"street\": \"شارع الأمير محمد بن عبدالعزيز\",\n    \"buildingNumber\": \"1234\",\n    \"additionalNumber\": \"5678\"\n  },\n  \"orderData\": [\n    {\n      \"plantId\": \"507f1f77bcf86cd799439011\",\n      \"quantity\": 2,\n      \"unitPrice\": 75.5\n    },\n    {\n      \"plantId\": \"507f1f77bcf86cd799439012\",\n      \"quantity\": 1,\n      \"unitPrice\": 120\n    }\n  ],\n  \"paymentMethod\": \"apple_pay\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/bookings/plants",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", "plants"]
+            },
+            "description": "Create plant order booking with delivery details and integrated NoqoodyPay payment URL. Updated API structure with personalInfo, recipientPerson, deliveryAddress, and orderData. Supports Apple Pay and other modern payment methods."
+          }
+        },
+        {
+          "name": "Create Rest Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"محمد أحمد السعد\",\n  \"email\": \"mohammed@example.com\",\n  \"phone\": \"+966501111222\",\n  \"restId\": \"507f1f77bcf86cd799439020\",\n  \"checkIn\": [\"2025-07-26\", \"2025-07-27\"],\n  \"overnight\": true,\n  \"totalPrice\": 500,\n  \"totalPaid\": 500,\n  \"paymentAmount\": \"full\",\n  \"paymentMethod\": \"card\",\n  \"cardDetails\": {\n    \"cardNumber\": \"4111 1111 1111 1111\",\n    \"expiryDate\": \"12/26\",\n    \"cvv\": \"123\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/bookings/rest",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", "rest"]
+            },
+            "description": "Create rest booking with payment integration. Requires valid restId for successful booking creation."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payment",
+      "item": [
+        {
+          "name": "Verify Payment",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/payment/verify/:reference",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payment", "verify", ":reference"],
+              "variable": [
+                {
+                  "key": "reference",
+                  "value": "DIRW-1753374165204",
+                  "description": "Payment reference from booking response"
+                }
+              ]
+            },
+            "description": "Verify payment status using payment reference. GET request with reference as URL parameter."
+          }
+        },
+        {
+          "name": "Verify and Update Payment",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/payment/verify-and-update/:referenceNo",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payment", "verify-and-update", ":referenceNo"],
+              "variable": [
+                {
+                  "key": "referenceNo",
+                  "value": "DIRW-1753374165204",
+                  "description": "Payment reference from booking response"
+                }
+              ]
+            },
+            "description": "Verify payment status with NoqoodyPay API and automatically update booking/payment status in database. Returns updated booking details."
+          }
+        },
+        {
+          "name": "NoqoodyPay Webhook (GET)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/payment/webhook/noqoody?reference=DIRW-1753374165204",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payment", "webhook", "noqoody"],
+              "query": [
+                {
+                  "key": "reference",
+                  "value": "DIRW-1753374165204",
+                  "description": "Payment reference from NoqoodyPay redirect"
+                }
+              ]
+            },
+            "description": "NoqoodyPay webhook endpoint (GET method). Called automatically by NoqoodyPay after payment completion. Revalidates transaction and updates booking status."
+          }
+        },
+        {
+          "name": "NoqoodyPay Webhook (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reference\": \"DIRW-1753374165204\",\n  \"ReferenceNo\": \"DIRW-1753374165204\",\n  \"status\": \"Success\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/payment/webhook/noqoody",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payment", "webhook", "noqoody"]
+            },
+            "description": "NoqoodyPay webhook endpoint (POST method). Called automatically by NoqoodyPay after payment completion. Accepts reference in request body and updates booking status."
+          }
+        },
+        {
+          "name": "Get Payment Channels",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/payment/channels",
+              "host": ["{{base_url}}"],
+              "path": ["api", "payment", "channels"]
+            },
+            "description": "Get available payment channels including Apple Pay, Google Pay, Samsung Pay, PayPal, STC Pay, and Mada."
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5001",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إعادة التوجيه التلقائي - درواز</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 400px;
+        }
+        
+        .logo {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid white;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .countdown {
+            font-size: 1.2em;
+            margin-top: 20px;
+            opacity: 0.9;
+        }
+        
+        .manual-link {
+            margin-top: 30px;
+        }
+        
+        .manual-link a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 30px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: 1.1em;
+        }
+        
+        .manual-link a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .status {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .failed { background: rgba(244, 67, 54, 0.3); }
+        .success { background: rgba(76, 175, 80, 0.3); }
+        .pending { background: rgba(255, 193, 7, 0.3); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🏡</div>
+        <div class="message">
+            <div class="status failed" id="status">❌ فشل في عملية الدفع</div>
+            <div>جاري إعادة التوجيه إلى موقع درواز...</div>
+        </div>
+        <div class="spinner"></div>
+        <div class="countdown">
+            سيتم التوجيه خلال <span id="countdown">3</span> ثواني
+        </div>
+        <div class="manual-link">
+            <a href="https://dirwaza-ten.vercel.app/ar?payment=failed" id="manual-redirect">
+                انقر هنا للعودة فوراً
+            </a>
+        </div>
+    </div>
+
+    <script>
+        console.log('🏡 صفحة إعادة التوجيه التلقائي لدرواز');
+        
+        // تحديد حالة الدفع من URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const status = urlParams.get('status') || 'failed';
+        const reference = urlParams.get('reference') || '';
+        
+        // رسائل الحالة
+        const statusMessages = {
+            failed: '❌ فشل في عملية الدفع',
+            success: '✅ تم الدفع بنجاح',
+            cancelled: '⚠️ تم إلغاء عملية الدفع',
+            timeout: '⏰ انتهت مهلة الدفع'
+        };
+        
+        // ألوان الحالة
+        const statusClasses = {
+            failed: 'failed',
+            success: 'success',
+            cancelled: 'pending',
+            timeout: 'pending'
+        };
+        
+        // تحديث رسالة الحالة
+        const statusElement = document.getElementById('status');
+        statusElement.textContent = statusMessages[status] || statusMessages.failed;
+        statusElement.className = 'status ' + (statusClasses[status] || 'failed');
+        
+        // تحديث رابط العودة
+        const redirectUrl = `https://dirwaza-ten.vercel.app/ar?payment=${status}${reference ? '&reference=' + reference : ''}`;
+        document.getElementById('manual-redirect').href = redirectUrl;
+        
+        // العد التنازلي والتوجيه التلقائي
+        let countdown = 3;
+        const countdownElement = document.getElementById('countdown');
+        
+        const timer = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            
+            if (countdown <= 0) {
+                clearInterval(timer);
+                console.log('🔄 إعادة التوجيه إلى:', redirectUrl);
+                window.location.href = redirectUrl;
+            }
+        }, 1000);
+        
+        // التحقق من صفحات NoqoodyPay والتوجيه الفوري
+        function checkNoqoodyPage() {
+            const currentUrl = window.location.href.toLowerCase();
+            const referrer = document.referrer.toLowerCase();
+            
+            // كشف محسن لجميع صفحات الدفع (NoqoodyPay, Wibmo, إلخ)
+            if (currentUrl.includes('3ds.noqoodypay.com') || 
+                currentUrl.includes('noqoodypay.com') ||
+                currentUrl.includes('wibmo.com') ||
+                currentUrl.includes('secure-acs2ui') ||
+                currentUrl.includes('failure') || 
+                currentUrl.includes('do_not_proceed') ||
+                currentUrl.includes('failed.html') ||
+                currentUrl.includes('failure%20do_not_proceed') ||
+                referrer.includes('noqoodypay.com') ||
+                referrer.includes('wibmo.com')) {
+                
+                console.log('🔍 تم اكتشاف صفحة NoqoodyPay - إعادة التوجيه فوراً');
+                console.log('🔗 الرابط الحالي:', currentUrl);
+                clearInterval(timer);
+                window.location.replace(redirectUrl);
+            }
+        }
+        
+        // فحص فوري
+        checkNoqoodyPage();
+        
+        // فحص دوري كل ثانية
+        setInterval(checkNoqoodyPage, 1000);
+        
+        // معالج النقر على الرابط اليدوي
+        document.getElementById('manual-redirect').addEventListener('click', (e) => {
+            e.preventDefault();
+            clearInterval(timer);
+            window.location.href = redirectUrl;
+        });
+        
+        console.log('🔹 حالة الدفع:', status);
+        console.log('🔹 مرجع الدفع:', reference);
+        console.log('🔹 رابط العودة:', redirectUrl);
+    </script>
+</body>
+</html>

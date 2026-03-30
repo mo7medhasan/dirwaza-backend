@@ -1,0 +1,3070 @@
+{
+	"info": {
+		"_postman_id": "7f5e1eeb-04f0-4fcf-b210-374312930176",
+		"name": "Dirwaza API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46275898",
+		"_collection_link": "https://dirwaza.postman.co/workspace/Team-Workspace~21628a0a-4b52-4d86-8cb4-08d762ad462a/collection/46275898-7f5e1eeb-04f0-4fcf-b210-374312930176?action=share&source=collection_link&creator=46275898"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"phone\": \"+201101015643\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/auth/register",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"token\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check_code",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"token\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"phone\": \"+1234566789\",\n  \"code\": \"941515\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/check_code",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"check_code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resendCode",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"phone\": \"+1234567989\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/resend_code",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"resend_code"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test User\",\n  \"phone\": \"+1234567899\",\n  \"email\": \"testuser@example.com\",\n  \"password\": \"userpassword\",\n  \"role\": \"user\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"token\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"phone\": \"+966501234567\",\n  \"password\": \"admin123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Experience",
+			"item": [
+				{
+					"name": "Create Experience",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Horse Riding\",\n  \"type\": \"horse_training\",\n  \"description\": \"Learn to ride horses!\",\n  \"price\": 200,\n  \"images\": [],\n  \"availableDates\": [\"2025-06-01T10:00:00.000Z\"],\n  \"isActive\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/experiences",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"experiences"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "Get All Bookings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/bookings?status=confirmed&date=2025-07-30",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "confirmed",
+									"description": "Filter by booking status (pending, confirmed, cancelled)"
+								},
+								{
+									"key": "experienceId",
+									"value": "",
+									"description": "Filter by specific experience ID",
+									"disabled": true
+								},
+								{
+									"key": "date",
+									"value": "2025-07-30",
+									"description": "Filter by booking date (YYYY-MM-DD format)"
+								}
+							]
+						},
+						"description": "Get all bookings with optional filtering by status, experience ID, or date. Supports filtering for confirmed, pending, or cancelled bookings. Returns populated booking data with experience and user details. Requires admin authentication.\n\nResponse format:\n{\n  \"success\": true,\n  \"data\": [...bookings],\n  \"total\": number\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Rest Bookings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/bookings/rest/all?page=1&limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"rest",
+								"all"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number for pagination"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Number of bookings per page"
+								},
+								{
+									"key": "status",
+									"value": "",
+									"description": "Filter by booking status (pending, confirmed, cancelled)",
+									"disabled": true
+								},
+								{
+									"key": "startDate",
+									"value": "",
+									"description": "Filter by start date (YYYY-MM-DD)",
+									"disabled": true
+								},
+								{
+									"key": "endDate",
+									"value": "",
+									"description": "Filter by end date (YYYY-MM-DD)",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all rest/resort bookings with pagination and filtering options. Returns detailed booking information including user details, rest information, check-in dates, and payment status. Requires admin authentication.\n\nFeatures:\n- Pagination support\n- Status filtering\n- Date range filtering\n- Arabic language support\n\nResponse includes booking details, user info, rest details, and pagination metadata."
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Horse Training Bookings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/bookings/horse/all?page=1&limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"horse",
+								"all"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number for pagination"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Number of bookings per page"
+								},
+								{
+									"key": "status",
+									"value": "",
+									"description": "Filter by booking status (pending, confirmed, cancelled)",
+									"disabled": true
+								},
+								{
+									"key": "startDate",
+									"value": "",
+									"description": "Filter by start date (YYYY-MM-DD)",
+									"disabled": true
+								},
+								{
+									"key": "endDate",
+									"value": "",
+									"description": "Filter by end date (YYYY-MM-DD)",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get all horse training bookings with pagination and filtering options. Returns detailed booking information including user details, training information, selected appointments, and payment status. Requires admin authentication.\n\nFeatures:\n- Pagination support\n- Status filtering\n- Date range filtering\n- Arabic language support\n\nResponse includes booking details, user info, training details, appointments, and pagination metadata."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Rest Disabled Dates",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/bookings/rest/:restId/disabled-dates?startDate=2025-08-01&endDate=2025-12-31",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"rest",
+								":restId",
+								"disabled-dates"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-08-01",
+									"description": "Start date for checking availability (YYYY-MM-DD)"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-12-31",
+									"description": "End date for checking availability (YYYY-MM-DD)"
+								}
+							],
+							"variable": [
+								{
+									"key": "restId",
+									"value": "66f123456789abcdef123456",
+									"description": "ID of the rest/resort"
+								}
+							]
+						},
+						"description": "Get disabled dates for a specific rest/resort. Returns dates that are already booked and unavailable for new bookings. Includes pricing information and date range. Used by frontend calendar components to disable unavailable dates.\n\nResponse includes:\n- Base price and weekend price\n- Array of disabled dates\n- Date range queried\n- Rest information"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Horse Training Disabled Dates",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/bookings/horse/:experienceId/disabled-dates?startDate=2025-08-01&endDate=2025-11-30",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"horse",
+								":experienceId",
+								"disabled-dates"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-08-01",
+									"description": "Start date for checking availability (YYYY-MM-DD)"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-11-30",
+									"description": "End date for checking availability (YYYY-MM-DD)"
+								},
+								{
+									"key": "timeSlot",
+									"value": "",
+									"description": "Specific time slot to check (e.g., '09:00')",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "experienceId",
+									"value": "66f123456789abcdef123456",
+									"description": "ID of the horse training experience"
+								}
+							]
+						},
+						"description": "Get disabled dates for horse training bookings. Returns dates and time slots that are already booked. If timeSlot is specified, only checks that specific slot. Otherwise returns all disabled dates and available time slots.\n\nResponse includes:\n- Base price and weekend price\n- Array of disabled dates\n- Disabled time slots per date\n- Available time slots\n- Date range queried\n- Training experience information"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userName\": \"Test User\",\n  \"userPhone\": \"+1234567899\",\n  \"userEmail\": \"testuser@example.com\",\n  \"experienceType\": \"horse_training\",\n  \"experienceId\": \"replace_with_experience_id\",\n  \"date\": \"2025-06-01\",\n  \"timeSlot\": \"10:00-12:00\",\n  \"amount\": 150\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/bookings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Rest Booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fullName\": \"محمد حسن\",\n  \"email\": \"mo7med.hasan5@gmail.com\",\n  \"phone\": \"01550003860\",\n  \"cardDetails\": {\n    \"cardNumber\": \"4111111111111111\",\n    \"expiryDate\": \"12/25\",\n    \"cvv\": \"432\"\n  },\n  \"paymentAmount\": \"partial\",\n  \"paymentMethod\": \"card\",\n  \"totalPrice\": 900,\n  \"totalPaid\": 450,\n  \"overnight\": true,\n  \"checkIn\": [\n    \"2025-07-29\",\n    \"2025-07-30\"\n  ],\n  \"restId\": \"6867dd4bc112696d27cef41e\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/bookings/rest",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"rest"
+							]
+						},
+						"description": "Create a rest/resort booking with integrated NoqoodyPay payment URL. Supports both overnight and day visit bookings with partial or full payment. Returns booking details along with paymentUrl, paymentReference, and paymentMessage for seamless payment processing."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Horse Training Booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"agreedToTerms\": true,\n  \"personalInfo\": {\n    \"fullName\": \"أحمد محمد العلي\",\n    \"parentName\": \"محمد العلي\",\n    \"age\": \"12\",\n    \"mobileNumber\": \"+966501111111\",\n    \"previousTraining\": \"لا يوجد\",\n    \"notes\": \"الطفل متحمس للتدريب\"\n  },\n  \"numberPersons\": 1,\n  \"selectedCategoryId\": \"children\",\n  \"selectedCourseId\": \"children-daily\",\n  \"selectedAppointments\": [\n    {\n      \"date\": \"2025-07-27\",\n      \"timeSlot\": \"18:00\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/bookings/horse",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"horse"
+							]
+						},
+						"description": "Create horse training booking with multiple appointments and integrated NoqoodyPay payment URL. Supports terms agreement, personal info, and training details. Returns booking details along with paymentUrl, paymentReference, totalAmount, and paymentMessage for seamless payment processing of all training sessions."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Plant Order Booking",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"agreedToTerms\": true,\n  \"personalInfo\": {\n    \"fullName\": \"سارة أحمد محمد\",\n    \"mobileNumber\": \"+966501234567\",\n    \"notes\": \"أريد نباتات للحديقة المنزلية\"\n  },\n  \"recipientPerson\": {\n    \"fullName\": \"سارة أحمد محمد\",\n    \"mobileNumber\": \"+966501234567\"\n  },\n  \"deliveryAddress\": {\n    \"city\": \"الرياض\",\n    \"district\": \"النرجس\",\n    \"street\": \"شارع الأمير محمد بن عبدالعزيز\",\n    \"buildingNumber\": \"1234\",\n    \"additionalNumber\": \"5678\"\n  },\n  \"orderData\": [\n    {\n      \"plantId\": \"507f1f77bcf86cd799439011\",\n      \"quantity\": 2,\n      \"unitPrice\": 75.5\n    }\n  ],\n  \"paymentMethod\": \"apple_pay\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/bookings/plants",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"plants"
+							]
+						},
+						"description": "Create plant order booking with delivery details and integrated NoqoodyPay payment URL. Supports multiple plants, delivery address, recipient information, and payment details. Returns booking details along with paymentUrl, paymentReference, and paymentMessage for seamless payment processing."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contact",
+			"item": [
+				{
+					"name": "Create Contact",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Contact Person\",\n  \"phone\": \"+1234567892\",\n  \"email\": \"contact@example.com\",\n  \"message\": \"Hello, I am interested!\",\n  \"createdAt\": \"2025-06-01T12:00:00.000Z\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/contact",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"contact"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Create Otp",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"phone\": \"+1234567893\",\n  \"code\": \"123456\",\n  \"expiresAt\": \"2025-06-01T12:10:00.000Z\",\n  \"used\": false\n}"
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/otp",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/user/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"أحمد محمد\",\n  \"email\": \"ahmed@example.com\",\n  \"image\": \"/path/to/image.jpg\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/profile",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Bookings",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/user/bookings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"admin_token\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"phone\": \"+1234567890\",\n  \"password\": \"adminpassword\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Get Payment Channels",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/payment/channels",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"channels"
+							]
+						},
+						"description": "Get available payment channels/services from NoqoodyPay (Credit Card, NAPS, Apple Pay, Google Pay). Public endpoint - no authentication required."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Payment Settings (Admin Only)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/payment/settings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"settings"
+							]
+						},
+						"description": "Get NoqoodyPay user settings including project details and available services. Requires admin authentication."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Payment Order (Main API)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"amount\": 150.750,\n  \"description\": \"طلب من المشتل - نباتات منزلية\",\n  \"customerName\": \"سارة أحمد\",\n  \"customerEmail\": \"sara.ahmed@example.com\",\n  \"customerPhone\": \"+966501111111\",\n  \"orderType\": \"plants\",\n  \"orderData\": {\n    \"items\": [\n      {\n        \"plantId\": \"64f123456789abcd12345678\",\n        \"name\": \"نبات الصبار\",\n        \"quantity\": 2,\n        \"price\": 50.250\n      }\n    ],\n    \"deliveryAddress\": \"الرياض، حي النرجس\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/payment/create-order",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"create-order"
+							]
+						},
+						"description": "Main payment API - Creates payment order with automatic user management. Finds existing user by phone or creates new one. Generates payment link and stores payment record."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Training Payment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"amount\": 300.000,\n  \"description\": \"حجز تدريب فروسية - مستوى مبتدئ\",\n  \"customerName\": \"محمد علي\",\n  \"customerEmail\": \"mohammed.ali@example.com\",\n  \"customerPhone\": \"+966502222222\",\n  \"orderType\": \"training\",\n  \"orderData\": {\n    \"trainingId\": \"64f123456789abcd12345680\",\n    \"trainingName\": \"تدريب الفروسية للمبتدئين\",\n    \"date\": \"2025-08-15\",\n    \"time\": \"10:00 AM\",\n    \"duration\": \"2 hours\",\n    \"instructor\": \"الكابتن أحمد محمد\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/payment/create-order",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"create-order"
+							]
+						},
+						"description": "Example: Create payment for equestrian training booking"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Rest Booking Payment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"amount\": 500.000,\n  \"description\": \"حجز استراحة - باقة نهاية الأسبوع\",\n  \"customerName\": \"فاطمة خالد\",\n  \"customerEmail\": \"fatima.khalid@example.com\",\n  \"customerPhone\": \"+966503333333\",\n  \"orderType\": \"rest\",\n  \"orderData\": {\n    \"restId\": \"64f123456789abcd12345681\",\n    \"restName\": \"استراحة الواحة\",\n    \"checkIn\": \"2025-08-20\",\n    \"checkOut\": \"2025-08-22\",\n    \"guests\": 6,\n    \"amenities\": [\"مسبح\", \"شواء\", \"ألعاب أطفال\"]\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/payment/create-order",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"create-order"
+							]
+						},
+						"description": "Example: Create payment for rest/resort booking"
+					},
+					"response": []
+				},
+				{
+					"name": "Test Payment (Development)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/payment/test-payment",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"test-payment"
+							]
+						},
+						"description": "Development endpoint - generates a test payment link with NoqoodyPay for testing purposes"
+					},
+					"response": []
+				},
+				{
+					"name": "Mock Checkout Page (Development)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/payment/mock-checkout?ref=DIRW-123456&amount=100.50&currency=SAR",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"mock-checkout"
+							],
+							"query": [
+								{
+									"key": "ref",
+									"value": "DIRW-123456",
+									"description": "Payment reference number"
+								},
+								{
+									"key": "amount",
+									"value": "100.50",
+									"description": "Payment amount"
+								},
+								{
+									"key": "currency",
+									"value": "SAR",
+									"description": "Payment currency"
+								}
+							]
+						},
+						"description": "Development mock checkout page - Beautiful Arabic interface for payment simulation with success/failure buttons"
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Payment Status by Reference",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/payment/verify/DIRW-1753367234153",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"verify",
+								"DIRW-1753367234153"
+							]
+						},
+						"description": "Verify payment status using payment reference number. Uses official NoqoodyPay validation API: /sdk/api/Members/GetTransactionDetailStatusByClientReference/. Replace 'DIRW-1753367234153' with actual payment reference from booking response. Returns complete transaction details including status, amount, date, and payment method."
+					},
+					"response": []
+				},
+				{
+					"name": "Verify and Update Payment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/payment/verify-and-update/DIRW-1753374165204",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"verify-and-update",
+								"DIRW-1753374165204"
+							]
+						},
+						"description": "Verify payment status with NoqoodyPay API and automatically update booking/payment status in database. Returns updated booking details. Replace 'DIRW-1753374165204' with actual payment reference."
+					},
+					"response": []
+				},
+				{
+					"name": "NoqoodyPay Webhook (GET)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/payment/webhook/noqoody?reference=DIRW-1753374165204",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"webhook",
+								"noqoody"
+							],
+							"query": [
+								{
+									"key": "reference",
+									"value": "DIRW-1753374165204",
+									"description": "Payment reference from NoqoodyPay redirect"
+								}
+							]
+						},
+						"description": "NoqoodyPay webhook endpoint (GET method). Called automatically by NoqoodyPay after payment completion. Revalidates transaction and updates booking status. Set this URL in NoqoodyPay dashboard."
+					},
+					"response": []
+				},
+				{
+					"name": "NoqoodyPay Webhook (POST)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"reference\": \"DIRW-1753374165204\",\n  \"ReferenceNo\": \"DIRW-1753374165204\",\n  \"status\": \"Success\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/payment/webhook/noqoody",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"webhook",
+								"noqoody"
+							]
+						},
+						"description": "NoqoodyPay webhook endpoint (POST method). Called automatically by NoqoodyPay after payment completion. Accepts reference in request body and updates booking status. Alternative webhook format."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Payment Channels by Session",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"sessionId\": \"8116ba10-1a25-457e-a818-vcaa323kjdfs\",\n  \"uuid\": \"136852454\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/payment/payment-channels",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"payment-channels"
+							]
+						},
+						"description": "Get available payment channels (Credit Card, Debit Card, PayPal, Google Pay, etc.) using SessionID and UUID from payment link generation. Uses official NoqoodyPay API: /sdk/api/PaymentLink/PaymentChannels. The SessionID and UUID are returned when generating a payment link. Returns array of payment channels with URLs and transaction details."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rests",
+			"item": [
+				{
+					"name": "Get All Rests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/rests",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"rests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Rest By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/rests/:id",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"rests",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Rest By Href",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/rests/href/:href",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"rests",
+								"href",
+								":href"
+							],
+							"variable": [
+								{
+									"key": "href",
+									"value": "the-green-house"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Rest",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"New Rest\",\n  \"title\": \"Amazing Rest\",\n  \"description\": \"A beautiful rest house\",\n  \"price\": 2000,\n  \"rating\": 4.5,\n  \"location\": \"الرياض\",\n  \"href\": \"new-rest\",\n  \"features\": [\"feature1\", \"feature2\"],\n  \"amenities\": [\"amenity1\", \"amenity2\"],\n  \"availability\": {\n    \"overnight\": true,\n    \"withoutOvernight\": false,\n    \"checkIn\": \"14:00\",\n    \"checkOut\": \"12:00\"\n  },\n  \"images\": []\n}"
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/rests",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"rests"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Rest",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Updated Rest\",\n  \"price\": 2200\n}"
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/rests/:id",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"rests",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Rest",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/rests/:id",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"rests",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Restore Rest",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/rests/:id/restore",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"rests",
+								":id",
+								"restore"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Seed Sample Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/rests/seed",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"rests",
+								"seed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Rests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/rests?search=house&minPrice=1500&maxPrice=2500&location=الرياض",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"rests"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "house"
+								},
+								{
+									"key": "minPrice",
+									"value": "1500"
+								},
+								{
+									"key": "maxPrice",
+									"value": "2500"
+								},
+								{
+									"key": "location",
+									"value": "الرياض"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Calendar",
+			"item": [
+				{
+					"name": "Get All Calendars",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/calendar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"calendar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Calendar by Experience ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/calendar/:experienceId",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"calendar",
+								":experienceId"
+							],
+							"variable": [
+								{
+									"key": "experienceId"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create/Update Calendar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"experienceId\": \"{{experience_id}}\",\n  \"basePrice\": 450,\n  \"weekendPrice\": 600,\n  \"disabledDates\": [\n    {\n      \"date\": \"2024-12-25\",\n      \"reason\": \"closed\",\n      \"description\": \"إجازة رسمية\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/calendar",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"calendar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Prices Only",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"basePrice\": 500,\n  \"weekendPrice\": 650\n}"
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/calendar/:id/prices",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"calendar",
+								":id",
+								"prices"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Disabled Date",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"date\": \"2024-12-31\",\n  \"reason\": \"maintenance\",\n  \"description\": \"صيانة دورية\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/calendar/:id/disabled-dates",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"calendar",
+								":id",
+								"disabled-dates"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Disabled Date",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/calendar/:id/disabled-dates/:dateId",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"calendar",
+								":id",
+								"disabled-dates",
+								":dateId"
+							],
+							"variable": [
+								{
+									"key": "id"
+								},
+								{
+									"key": "dateId"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Date Availability",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/calendar/:experienceId/check-date/:date",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"calendar",
+								":experienceId",
+								"check-date",
+								":date"
+							],
+							"variable": [
+								{
+									"key": "experienceId"
+								},
+								{
+									"key": "date"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Calendar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/calendar/:id",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"calendar",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Plants",
+			"item": [
+				{
+					"name": "Get All Plants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/plants",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"plants"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": "indoor",
+									"disabled": true
+								},
+								{
+									"key": "isAvailable",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "isOnSale",
+									"value": "true",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "نبات",
+									"disabled": true
+								},
+								{
+									"key": "minPrice",
+									"value": "50",
+									"disabled": true
+								},
+								{
+									"key": "maxPrice",
+									"value": "200",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Plant Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/plants/categories",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"plants",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Featured Plants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/plants/featured?limit=6",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"plants",
+								"featured"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Plant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/plants/:id",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"plants",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Plant",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"نبات جديد\",\n  \"nameEn\": \"New Plant\",\n  \"price\": 120,\n  \"image\": \"/images/plants/new-plant.jpg\",\n  \"description\": \"وصف النبات الجديد\",\n  \"descriptionEn\": \"New plant description\",\n  \"category\": \"indoor\",\n  \"careLevel\": \"easy\",\n  \"lightRequirement\": \"medium\",\n  \"wateringFrequency\": \"weekly\",\n  \"stock\": 10,\n  \"tags\": [\"indoor\", \"decorative\"],\n  \"isAvailable\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/plants",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"plants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Plant",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"price\": 150,\n  \"stock\": 15,\n  \"isOnSale\": true,\n  \"originalPrice\": 200\n}"
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/plants/:id",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"plants",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Toggle Plant Availability",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"isAvailable\": false\n}"
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/plants/:id/availability",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"plants",
+								":id",
+								"availability"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Toggle Plant Sale Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"isOnSale\": true,\n  \"originalPrice\": 200\n}"
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/plants/:id/sale",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"plants",
+								":id",
+								"sale"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Plant (Soft Delete)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_local}}/api/plants/:id",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"plants",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Training",
+			"item": [
+				{
+					"name": "Get All Trainings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/trainings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trainings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Training by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/trainings/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trainings",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create or Update Training",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"New Training\",\n  \"description\": \"Description of the new training\",\n  \"price\": 100,\n  \"image\": \"/images/trainings/new-training.jpg\",\n  \"category\": \"garden\",\n  \"courses\": [\"course1\", \"course2\"]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/trainings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trainings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Toggle Training Status",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"isActive\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/trainings/:id/status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trainings",
+								":id",
+								"status"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Training",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/trainings/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trainings",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Trainings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/trainings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"trainings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contact Info",
+			"item": [
+				{
+					"name": "Get Contact Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/contact-info",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"contact-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Contact Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Contact Us\",\n  \"titleAr\": \"تواصل معنا\",\n  \"links\": [\n    {\n      \"id\": \"email\",\n      \"type\": \"email\",\n      \"label\": \"Email\",\n      \"labelAr\": \"البريد الإلكتروني\",\n      \"url\": \"mailto:info@dirwaza.com\",\n      \"icon\": \"Mail\",\n      \"hoverColor\": \"hover:text-blue-600\",\n      \"ariaLabel\": \"Send Email\",\n      \"ariaLabelAr\": \"إرسال بريد إلكتروني\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/contact-info",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"contact-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Contact Link",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"Tiktok\",\n  \"type\": \"tiktok\",\n  \"label\": \"Tiktok\",\n  \"labelAr\": \"تيك توك\",\n  \"url\": \"https://www.tiktok.com/@dirwazh?_t=ZS-8yIsV0k3lma&_r=1\",\n  \"icon\": \"Tiktok\",\n  \"hoverColor\": \"hover:text-blue-600\",\n  \"ariaLabel\": \"Follow on Tiktok\",\n  \"ariaLabelAr\": \"تابعنا على تيك توك\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/contact-info/links",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"contact-info",
+								"links"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Contact Link",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"label\": \"Instagram Updated\",\n  \"labelAr\": \"إنستغرام محدث\",\n  \"url\": \"https://instagram.com/dirwaza_updated\",\n  \"hoverColor\": \"hover:text-purple-600\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/contact-info/links/instagram",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"contact-info",
+								"links",
+								"instagram"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Contact Link",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/contact-info/links/facebook",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"contact-info",
+								"links",
+								"facebook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Toggle Contact Info Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/contact-info/status",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"contact-info",
+								"status"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "Get Dashboard Statistics",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/stats",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard",
+								"stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recent Activities",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/activities?limit=10",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard",
+								"activities"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Revenue Analytics - Month",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/revenue?period=month",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard",
+								"revenue"
+							],
+							"query": [
+								{
+									"key": "period",
+									"value": "month"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Revenue Analytics - Week",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/revenue?period=week",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard",
+								"revenue"
+							],
+							"query": [
+								{
+									"key": "period",
+									"value": "week"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Revenue Analytics - Year",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/revenue?period=year",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard",
+								"revenue"
+							],
+							"query": [
+								{
+									"key": "period",
+									"value": "year"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Payments",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/payments?page=1&limit=10&status=&method=&startDate=&endDate=&search=&sortBy=createdAt&sortOrder=desc",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard",
+								"payments"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number (default: 1)"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Items per page (default: 10)"
+								},
+								{
+									"key": "status",
+									"value": "",
+									"description": "Filter by status (e.g., 'pending', 'completed', 'failed', 'cancelled')"
+								},
+								{
+									"key": "method",
+									"value": "",
+									"description": "Filter by payment method (e.g., 'creditCard', 'bankTransfer', 'cash', 'wallet')"
+								},
+								{
+									"key": "startDate",
+									"value": "",
+									"description": "Filter by start date (YYYY-MM-DD)"
+								},
+								{
+									"key": "endDate",
+									"value": "",
+									"description": "Filter by end date (YYYY-MM-DD)"
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Search by customer name or email"
+								},
+								{
+									"key": "sortBy",
+									"value": "createdAt",
+									"description": "Field to sort by (default: 'createdAt')"
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc",
+									"description": "Sort order ('asc' or 'desc', default: 'desc')"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Booking Stats by Experience Type",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/booking-stats",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard",
+								"booking-stats"
+							]
+						},
+						"description": "Get booking statistics grouped by experience type (equestrian, rest, nursery, training)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Dashboard Statistics",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/statistics",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard",
+								"statistics"
+							]
+						},
+						"description": "Get dashboard statistics"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Dashboard Reservations",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/dashboard/reservations",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"dashboard",
+								"reservations"
+							]
+						},
+						"description": "Get dashboard reservations"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://egy.gfoura.com",
+			"type": "string"
+		},
+		{
+			"key": "base_url_local",
+			"value": "http://127.0.0.1:5001",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "token",
+			"type": "string"
+		},
+		{
+			"key": "admin_token",
+			"value": ""
+		}
+	]
+}

@@ -1,0 +1,34 @@
+{
+  "name": "dirwaza-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "^22"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "date-fns": "^4.1.0",
+    "dotenv": "^16.3.1",
+    "exceljs": "^4.4.0",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "express-form-data": "^3.0.0",
+    "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.16.0",
+    "mongoose": "^7.8.7",
+    "multer": "^2.0.0",
+    "pdfkit": "^0.17.1",
+    "serverless-http": "^3.2.0",
+    "twilio": "^5.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

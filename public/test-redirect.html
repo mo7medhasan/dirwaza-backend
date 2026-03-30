@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار إعادة توجيه الدفع - Dirwaza</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+        .test-section h3 {
+            color: #555;
+            margin-top: 0;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .success { background: #4CAF50; }
+        .failed { background: #f44336; }
+        .pending { background: #ff9800; }
+        .info {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #1976d2;
+        }
+        .booking-ref {
+            font-family: monospace;
+            background: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 اختبار نظام إعادة توجيه الدفع</h1>
+        
+        <div class="info">
+            <strong>مرجع الحجز للاختبار:</strong> 
+            <span class="booking-ref">DIRW-1756026457929</span>
+        </div>
+
+        <div class="test-section">
+            <h3>🟢 اختبار الدفع الناجح</h3>
+            <p>محاكاة إعادة توجيه ناجحة من NoqoodyPay</p>
+            <button class="success" onclick="testRedirect('success')">
+                اختبار الدفع الناجح
+            </button>
+        </div>
+
+        <div class="test-section">
+            <h3>🔴 اختبار فشل الدفع</h3>
+            <p>محاكاة إعادة توجيه فاشلة من NoqoodyPay</p>
+            <button class="failed" onclick="testRedirect('failed')">
+                اختبار فشل الدفع
+            </button>
+        </div>
+
+        <div class="test-section">
+            <h3>🟡 اختبار الدفع المعلق</h3>
+            <p>محاكاة دفع في حالة انتظار</p>
+            <button class="pending" onclick="testRedirect('pending')">
+                اختبار الدفع المعلق
+            </button>
+        </div>
+
+        <div class="test-section">
+            <h3>📋 اختبار التحقق اليدوي</h3>
+            <p>اختبار نقطة نهاية التحقق اليدوي</p>
+            <button onclick="testManualVerification()">
+                اختبار التحقق اليدوي
+            </button>
+        </div>
+
+        <div id="results" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        const bookingRef = 'DIRW-1756026457929';
+        
+        function testRedirect(type) {
+            const results = document.getElementById('results');
+            results.innerHTML = '<p>🔄 جاري الاختبار...</p>';
+            
+            let url;
+            switch(type) {
+                case 'success':
+                    url = `/api/payment/payment-redirect?reference=${bookingRef}&success=True&code=200&message=SUCCESS&TransactionId=1479`;
+                    break;
+                case 'failed':
+                    url = `/api/payment/payment-redirect?reference=${bookingRef}&success=False&code=400&message=FAILED&TransactionId=1480`;
+                    break;
+                case 'pending':
+                    url = `/api/payment/payment-redirect?reference=${bookingRef}&success=True&code=202&message=PENDING&TransactionId=1481`;
+                    break;
+            }
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    displayResults(data, type);
+                })
+                .catch(error => {
+                    results.innerHTML = `<div style="color: red;">❌ خطأ: ${error.message}</div>`;
+                });
+        }
+        
+        function testManualVerification() {
+            const results = document.getElementById('results');
+            results.innerHTML = '<p>🔄 جاري التحقق اليدوي...</p>';
+            
+            fetch(`/api/payment/verify-and-update/${bookingRef}`, {
+                headers: {
+                    'Accept-Language': 'ar'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    displayResults(data, 'manual');
+                })
+                .catch(error => {
+                    results.innerHTML = `<div style="color: red;">❌ خطأ: ${error.message}</div>`;
+                });
+        }
+        
+        function displayResults(data, type) {
+            const results = document.getElementById('results');
+            const statusColor = data.success ? '#4CAF50' : '#f44336';
+            
+            let html = `
+                <div style="border: 2px solid ${statusColor}; border-radius: 10px; padding: 20px; background: white;">
+                    <h4 style="color: ${statusColor}; margin-top: 0;">
+                        ${data.success ? '✅ نجح الاختبار' : '❌ فشل الاختبار'}
+                    </h4>
+                    <p><strong>الرسالة:</strong> ${data.message}</p>
+            `;
+            
+            if (data.data) {
+                html += `
+                    <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin: 10px 0;">
+                        <h5>تفاصيل الحجز:</h5>
+                        <p><strong>ID:</strong> ${data.data.booking?.id || 'غير متوفر'}</p>
+                        <p><strong>حالة الدفع:</strong> ${data.data.booking?.paymentStatus || 'غير متوفر'}</p>
+                        <p><strong>حالة الحجز:</strong> ${data.data.booking?.bookingStatus || 'غير متوفر'}</p>
+                        <p><strong>المبلغ:</strong> ${data.data.booking?.amount || 'غير متوفر'} ريال</p>
+                `;
+                
+                if (data.data.redirect?.url) {
+                    html += `
+                        <div style="margin-top: 15px;">
+                            <h5>رابط إعادة التوجيه:</h5>
+                            <a href="${data.data.redirect.url}" target="_blank" style="color: #2196f3; word-break: break-all;">
+                                ${data.data.redirect.url}
+                            </a>
+                        </div>
+                    `;
+                }
+                
+                html += '</div>';
+            }
+            
+            html += '</div>';
+            results.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

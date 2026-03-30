@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إعادة توجيه الدفع - درواز</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            max-width: 400px;
+        }
+        
+        .logo {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .message {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid white;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .countdown {
+            font-size: 1.1em;
+            margin-top: 20px;
+            opacity: 0.8;
+        }
+        
+        .manual-link {
+            margin-top: 30px;
+        }
+        
+        .manual-link a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 12px 24px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .manual-link a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🏡 درواز</div>
+        <div class="message">
+            <div id="status-message">جاري إعادة التوجيه للصفحة الرئيسية...</div>
+        </div>
+        <div class="spinner"></div>
+        <div class="countdown">
+            سيتم التوجيه خلال <span id="countdown">3</span> ثواني
+        </div>
+        <div class="manual-link">
+            <a href="https://dirwaza-ten.vercel.app/ar" id="manual-redirect">
+                انقر هنا للعودة يدوياً
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const reference = urlParams.get('reference');
+        const status = urlParams.get('status');
+        
+        // Check if coming from NoqoodyPay failure page
+        const isFromNoqoodyFailure = window.location.href.includes('3ds.noqoodypay.com/failed.html') || 
+                                   document.referrer.includes('3ds.noqoodypay.com') ||
+                                   window.location.href.includes('FAILURE');
+        
+        // Determine payment status and message
+        let statusMessage = 'جاري إعادة التوجيه للصفحة الرئيسية...';
+        let redirectUrl = 'https://dirwaza-ten.vercel.app/ar';
+        
+        if (isFromNoqoodyFailure || status === 'failed') {
+            statusMessage = '❌ فشل في عملية الدفع - جاري العودة للصفحة الرئيسية...';
+            redirectUrl = `https://dirwaza-ten.vercel.app/ar?payment=failed${reference ? '&reference=' + reference : ''}`;
+        } else if (status === 'success') {
+            statusMessage = '✅ تم الدفع بنجاح - جاري العودة للصفحة الرئيسية...';
+            redirectUrl = `https://dirwaza-ten.vercel.app/ar?payment=success${reference ? '&reference=' + reference : ''}`;
+        } else if (status === 'cancelled') {
+            statusMessage = '⚠️ تم إلغاء عملية الدفع - جاري العودة للصفحة الرئيسية...';
+            redirectUrl = `https://dirwaza-ten.vercel.app/ar?payment=cancelled${reference ? '&reference=' + reference : ''}`;
+        }
+        
+        // Update message
+        document.getElementById('status-message').textContent = statusMessage;
+        document.getElementById('manual-redirect').href = redirectUrl;
+        
+        // Countdown timer
+        let countdown = 3;
+        const countdownElement = document.getElementById('countdown');
+        
+        const timer = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            
+            if (countdown <= 0) {
+                clearInterval(timer);
+                // Redirect to main site
+                window.location.href = redirectUrl;
+            }
+        }, 1000);
+        
+        // Immediate redirect if coming from NoqoodyPay failure
+        if (isFromNoqoodyFailure) {
+            setTimeout(() => {
+                window.location.href = redirectUrl;
+            }, 2000); // 2 seconds delay to show message
+        }
+        
+        // Handle manual redirect click
+        document.getElementById('manual-redirect').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = redirectUrl;
+        });
+        
+        console.log('🔹 Payment redirect page loaded');
+        console.log('🔹 Reference:', reference);
+        console.log('🔹 Status:', status);
+        console.log('🔹 Is from NoqoodyPay failure:', isFromNoqoodyFailure);
+        console.log('🔹 Redirect URL:', redirectUrl);
+    </script>
+</body>
+</html>

@@ -1,0 +1,776 @@
+{
+	"info": {
+		"_postman_id": "2bb54fa9-036a-4871-8a80-c82d114ce1e9",
+		"name": "Dirwaza API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38587530",
+		"_collection_link": "https://mycash-8329.postman.co/workspace/My-Workspace~9a0c22ea-1abb-48b7-8d4b-374bd2de98d4/collection/38587530-2bb54fa9-036a-4871-8a80-c82d114ce1e9?action=share&source=collection_link&creator=38587530"
+	},
+	"item": [
+    {
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"phone\": \"+201101015643\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/auth/register",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"token\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"formdata": [
+								{
+									"key": "phone",
+									"value": "+1234566789",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "userpassword",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check_code",
+          "event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"token\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"phone\": \"+1234566789\",\n  \"code\": \"941515\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/check_code",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"check_code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resendCode",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"phone\": \"+1234567989\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/resend_code",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"resend_code"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Test User\",\n  \"phone\": \"+1234567899\",\n  \"email\": \"testuser@example.com\",\n  \"password\": \"userpassword\",\n  \"role\": \"user\"\n}"
+						},
+						"url": {
+							"raw": "{{Dirwaza API.postman_collection}}/api/admin/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.collectionVariables.set(\"token\", pm.response.json().token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"formdata": [
+								{
+									"key": "phone",
+									"value": "+1234567890",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "adminpassword",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/admin/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Experience",
+			"item": [
+				{
+					"name": "Create Experience",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Horse Riding\",\n  \"type\": \"horse_training\",\n  \"description\": \"Learn to ride horses!\",\n  \"price\": 200,\n  \"images\": [],\n  \"availableDates\": [\"2025-06-01T10:00:00.000Z\"],\n  \"isActive\": true\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/experiences",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"experiences"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Booking",
+			"item": [
+				{
+					"name": "Create Booking",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userName\": \"Test User\",\n  \"userPhone\": \"+1234567899\",\n  \"userEmail\": \"testuser@example.com\",\n  \"experienceType\": \"horse_training\",\n  \"experienceId\": \"replace_with_experience_id\",\n  \"date\": \"2025-06-01\",\n  \"timeSlot\": \"10:00-12:00\",\n  \"amount\": 150\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/bookings",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contact",
+			"item": [
+				{
+					"name": "Create Contact",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Contact Person\",\n  \"phone\": \"+1234567892\",\n  \"email\": \"contact@example.com\",\n  \"message\": \"Hello, I am interested!\",\n  \"createdAt\": \"2025-06-01T12:00:00.000Z\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/contact",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"contact"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Otp",
+			"item": [
+				{
+					"name": "Create Otp",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"phone\": \"+1234567893\",\n  \"code\": \"123456\",\n  \"expiresAt\": \"2025-06-01T12:10:00.000Z\",\n  \"used\": false\n}"
+						},
+						"url": {
+							"raw": "{{base_url_local}}/api/otp",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"api",
+								"otp"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"0500000000\",\n  \"password\": \"adminpassword\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url_local}}/api/admin/login",
+              "host": [
+                "{{base_url_local}}"
+              ],
+              "path": [
+                "api",
+                "admin",
+                "login"
+              ]
+            }
+          }
+        }
+      ]
+    },{
+      "name": "Rests",
+      "item": [
+        {
+          "name": "Get All Rests",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url_local}}/api/rests",
+              "host": [
+                "{{base_url_local}}"
+              ],
+              "path": [
+                "api",
+                "rests"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Rest By ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url_local}}/api/rests/:id",
+              "host": [
+                "{{base_url_local}}"
+              ],
+              "path": [
+                "api",
+                "rests",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Rest By Href",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url_local}}/api/rests/href/:href",
+              "host": [
+                "{{base_url_local}}"
+              ],
+              "path": [
+                "api",
+                "rests",
+                "href",
+                ":href"
+              ],
+              "variable": [
+                {
+                  "key": "href",
+                  "value": "the-green-house"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Rest",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"New Rest\",\n  \"title\": \"Amazing Rest\",\n  \"description\": \"A beautiful rest house\",\n  \"price\": 2000,\n  \"rating\": 4.5,\n  \"location\": \"الرياض\",\n  \"href\": \"new-rest\",\n  \"features\": [\"feature1\", \"feature2\"],\n  \"amenities\": [\"amenity1\", \"amenity2\"],\n  \"availability\": {\n    \"overnight\": true,\n    \"withoutOvernight\": false,\n    \"checkIn\": \"14:00\",\n    \"checkOut\": \"12:00\"\n  },\n  \"images\": []\n}"
+            },
+            "url": {
+              "raw": "{{base_url_local}}/api/rests",
+              "host": [
+                "{{base_url_local}}"
+              ],
+              "path": [
+                "api",
+                "rests"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Rest",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Rest\",\n  \"price\": 2200\n}"
+            },
+            "url": {
+              "raw": "{{base_url_local}}/api/rests/:id",
+              "host": ["{{base_url_local}}"],
+              "path": ["api", "rests", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Rest",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url_local}}/api/rests/:id",
+              "host": ["{{base_url_local}}"],
+              "path": ["api", "rests", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Restore Rest",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "url": {
+              "raw": "{{base_url_local}}/api/rests/:id/restore",
+              "host": ["{{base_url_local}}"],
+              "path": ["api", "rests", ":id", "restore"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Seed Sample Data",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url_local}}/api/rests/seed",
+              "host": ["{{base_url_local}}"],
+              "path": ["api", "rests", "seed"]
+            }
+          }
+        },
+        {
+          "name": "Filter Rests",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url_local}}/api/rests?search=house&minPrice=1500&maxPrice=2500&location=الرياض",
+              "host": ["{{base_url_local}}"],
+              "path": ["api", "rests"],
+              "query": [
+                {"key": "search", "value": "house"},
+                {"key": "minPrice", "value": "1500"},
+                {"key": "maxPrice", "value": "2500"},
+                {"key": "location", "value": "الرياض"}
+              ]
+            }
+          }
+        }
+      ]
+    }
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://ar.gfoura.com",
+			"type": "string"
+		},
+		{
+			"key": "base_url_local",
+			"value": "http://127.0.0.1:5001",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "token",
+			"type": "string"
+		}
+	]
+}
